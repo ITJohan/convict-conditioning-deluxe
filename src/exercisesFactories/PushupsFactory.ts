@@ -85,7 +85,7 @@ const WallPushups = (level: Level, sets: Sets, reps: number): Exercise => {
     sets,
     reps,
     unit: 'Reps',
-    image: '', // TODO: Update url
+    image: `./images/pushups/${level}.jpg`,
   };
 };
 
@@ -97,7 +97,7 @@ const InclinePushups = (level: Level, sets: Sets, reps: number): Exercise => {
     sets,
     reps,
     unit: 'Reps',
-    image: '', // TODO: Update url
+    image: `./images/pushups/${level}.jpg`,
   };
 };
 
@@ -109,7 +109,7 @@ const KneelingPushups = (level: Level, sets: Sets, reps: number): Exercise => {
     sets,
     reps,
     unit: 'Reps',
-    image: '', // TODO: Update url
+    image: `./images/pushups/${level}.jpg`,
   };
 };
 
@@ -121,7 +121,7 @@ const HalfPushups = (level: Level, sets: Sets, reps: number): Exercise => {
     sets,
     reps,
     unit: 'Reps',
-    image: '', // TODO: Update url
+    image: `./images/pushups/${level}.jpg`,
   };
 };
 
@@ -133,7 +133,7 @@ const FullPushups = (level: Level, sets: Sets, reps: number): Exercise => {
     sets,
     reps,
     unit: 'Reps',
-    image: '', // TODO: Update url
+    image: `./images/pushups/${level}.jpg`,
   };
 };
 
@@ -145,7 +145,7 @@ const ClosePushups = (level: Level, sets: Sets, reps: number): Exercise => {
     sets,
     reps,
     unit: 'Reps',
-    image: '', // TODO: Update url
+    image: `./images/pushups/${level}.jpg`,
   };
 };
 
@@ -157,7 +157,7 @@ const UnevenPushups = (level: Level, sets: Sets, reps: number): Exercise => {
     sets,
     reps,
     unit: 'Reps',
-    image: '', // TODO: Update url
+    image: `./images/pushups/${level}.jpg`,
   };
 };
 
@@ -173,7 +173,7 @@ const HalfOneArmPushups = (
     sets,
     reps,
     unit: 'Reps',
-    image: '', // TODO: Update url
+    image: `./images/pushups/${level}.jpg`,
   };
 };
 
@@ -185,7 +185,7 @@ const LeverPushups = (level: Level, sets: Sets, reps: number): Exercise => {
     sets,
     reps,
     unit: 'Reps',
-    image: '', // TODO: Update url
+    image: `./images/pushups/${level}.jpg`,
   };
 };
 
@@ -197,6 +197,6 @@ const OneArmPushups = (level: Level, sets: Sets, reps: number): Exercise => {
     sets,
     reps,
     unit: 'Reps',
-    image: '', // TODO: Update url
+    image: `./images/pushups/${level}.jpg`,
   };
 };
