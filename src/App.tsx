@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import './App.css';
 
 const App = (): JSX.Element => {
@@ -18,6 +18,7 @@ const App = (): JSX.Element => {
 
   return (
     <main>
+      <Graph />
       <form>
         {setReps.map((reps, index) => {
           return (
@@ -37,6 +38,33 @@ const App = (): JSX.Element => {
   );
 };
 
+type GraphProps = {
+
+};
+
+const Graph: React.FC<GraphProps> = ({  }): JSX.Element => {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current as HTMLCanvasElement;
+    const context = canvas.getContext("2d") as CanvasRenderingContext2D;
+    context.moveTo(0, 0);
+    context.lineTo(200, 100);
+    context.stroke();
+  }, []);
+
+
+  return <canvas ref={canvasRef} width={200} height={100} />;
+};
+
+type SliderProps = {
+  id: number,
+  reps: number,
+  maxReps: number,
+  unit: Unit,
+  updateSetReps: (reps: number, index: number) => void
+};
+
 const Slider: React.FC<SliderProps> = ({ id, reps, maxReps, unit, updateSetReps }): JSX.Element => {
   return (
     <div>
@@ -52,14 +80,6 @@ const Slider: React.FC<SliderProps> = ({ id, reps, maxReps, unit, updateSetReps 
       {reps} {unit}
     </div>
   );
-};
-
-type SliderProps = {
-  id: number,
-  reps: number,
-  maxReps: number,
-  unit: Unit,
-  updateSetReps: (reps: number, index: number) => void
 };
 
 type Unit = "Reps" | "Seconds";
