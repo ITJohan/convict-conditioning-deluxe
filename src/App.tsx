@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import './App.css';
 import Graph from './components/Graph';
 import ExerciseForm from './components/ExerciseForm';
