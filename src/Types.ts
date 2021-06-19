@@ -1,0 +1,1 @@
+export type Unit = "Reps" | "Seconds";
