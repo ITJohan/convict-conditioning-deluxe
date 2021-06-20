@@ -58,8 +58,8 @@ export type WorkoutExercise = {
 export type Workout = {
   id: string;
   startDate: Date;
-  EndDate: Date;
-  Exercises: WorkoutExercise[];
+  endDate: Date;
+  exercises: WorkoutExercise[];
 };
 
 export type User = {
