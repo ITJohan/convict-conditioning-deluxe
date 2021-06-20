@@ -1,206 +1,96 @@
-import { Level, Sets, Exercise } from '../Types';
+import { Level, Sets, Exercise, Unit } from '../Types';
 
 export const SquatsFactory = (level: Level): Exercise => {
   switch (level) {
     case 1:
-      return ShoulderstandSquats(1, 1, 10);
+      return Squats('Shoulderstand squats', 1, 1, 10, 'Reps');
     case 2:
-      return ShoulderstandSquats(2, 2, 25);
+      return Squats('Shoulderstand squats', 2, 2, 25, 'Reps');
     case 3:
-      return ShoulderstandSquats(3, 3, 50);
+      return Squats('Shoulderstand squats', 3, 3, 50, 'Reps');
 
     case 4:
-      return JackknifeSquats(4, 1, 10);
+      return Squats('Jackknife squats', 4, 1, 10, 'Reps');
     case 5:
-      return JackknifeSquats(5, 2, 20);
+      return Squats('Jackknife squats', 5, 2, 20, 'Reps');
     case 6:
-      return JackknifeSquats(6, 3, 40);
+      return Squats('Jackknife squats', 6, 3, 40, 'Reps');
 
     case 7:
-      return SupportedSquats(7, 1, 10);
+      return Squats('Supported squats', 7, 1, 10, 'Reps');
     case 8:
-      return SupportedSquats(8, 2, 15);
+      return Squats('Supported squats', 8, 2, 15, 'Reps');
     case 9:
-      return SupportedSquats(9, 3, 30);
+      return Squats('Supported squats', 9, 3, 30, 'Reps');
 
     case 10:
-      return HalfSquats(10, 1, 8);
+      return Squats('Half squats', 10, 1, 8, 'Reps');
     case 11:
-      return HalfSquats(11, 2, 35);
+      return Squats('Half squats', 11, 2, 35, 'Reps');
     case 12:
-      return HalfSquats(12, 2, 50);
+      return Squats('Half squats', 12, 2, 50, 'Reps');
 
     case 13:
-      return FullSquats(13, 1, 5);
+      return Squats('Full squats', 13, 1, 5, 'Reps');
     case 14:
-      return FullSquats(14, 2, 10);
+      return Squats('Full squats', 14, 2, 10, 'Reps');
     case 15:
-      return FullSquats(15, 2, 30);
+      return Squats('Full squats', 15, 2, 30, 'Reps');
 
     case 16:
-      return CloseSquats(16, 1, 5);
+      return Squats('Close squats', 16, 1, 5, 'Reps');
     case 17:
-      return CloseSquats(17, 2, 10);
+      return Squats('Close squats', 17, 2, 10, 'Reps');
     case 18:
-      return CloseSquats(18, 2, 20);
+      return Squats('Close squats', 18, 2, 20, 'Reps');
 
     case 19:
-      return UnevenSquats(19, 1, 5);
+      return Squats('Uneven squats', 19, 1, 5, 'Reps');
     case 20:
-      return UnevenSquats(20, 2, 10);
+      return Squats('Uneven squats', 20, 2, 10, 'Reps');
     case 21:
-      return UnevenSquats(21, 2, 20);
+      return Squats('Uneven squats', 21, 2, 20, 'Reps');
 
     case 22:
-      return HalfOneLegSquats(22, 1, 5);
+      return Squats('1/2 one-leg squats', 22, 1, 5, 'Reps');
     case 23:
-      return HalfOneLegSquats(23, 2, 10);
+      return Squats('1/2 one-leg squats', 23, 2, 10, 'Reps');
     case 24:
-      return HalfOneLegSquats(24, 2, 20);
+      return Squats('1/2 one-leg squats', 24, 2, 20, 'Reps');
 
     case 25:
-      return AssistedOneLegSquats(25, 1, 5);
+      return Squats('Assisted one-leg squats', 25, 1, 5, 'Reps');
     case 26:
-      return AssistedOneLegSquats(26, 2, 10);
+      return Squats('Assisted one-leg squats', 26, 2, 10, 'Reps');
     case 27:
-      return AssistedOneLegSquats(27, 2, 20);
+      return Squats('Assisted one-leg squats', 27, 2, 20, 'Reps');
 
     case 28:
-      return OneLegSquats(28, 1, 5);
+      return Squats('One-leg squats', 28, 1, 5, 'Reps');
     case 29:
-      return OneLegSquats(29, 2, 10);
+      return Squats('One-leg squats', 29, 2, 10, 'Reps');
     case 30:
-      return OneLegSquats(30, 2, 50);
+      return Squats('One-leg squats', 30, 2, 50, 'Reps');
 
     default:
-      return ShoulderstandSquats(1, 1, 10);
+      return Squats('Shoulderstand squats', 1, 1, 10, 'Reps');
   }
 };
 
-const ShoulderstandSquats = (
+const Squats = (
+  variant: string,
   level: Level,
   sets: Sets,
-  reps: number
+  reps: number,
+  unit: Unit
 ): Exercise => {
   return {
     group: 'Squats',
-    variant: 'Knee tucks',
+    variant,
     level,
     sets,
     reps,
-    unit: 'Reps',
-    image: `./images/squats/${level}.jpg`,
-  };
-};
-
-const JackknifeSquats = (level: Level, sets: Sets, reps: number): Exercise => {
-  return {
-    group: 'Squats',
-    variant: 'Jackknife squats',
-    level,
-    sets,
-    reps,
-    unit: 'Reps',
-    image: `./images/squats/${level}.jpg`,
-  };
-};
-
-const SupportedSquats = (level: Level, sets: Sets, reps: number): Exercise => {
-  return {
-    group: 'Squats',
-    variant: 'Supported squats',
-    level,
-    sets,
-    reps,
-    unit: 'Reps',
-    image: `./images/squats/${level}.jpg`,
-  };
-};
-
-const HalfSquats = (level: Level, sets: Sets, reps: number): Exercise => {
-  return {
-    group: 'Squats',
-    variant: 'Half squats',
-    level,
-    sets,
-    reps,
-    unit: 'Reps',
-    image: `./images/squats/${level}.jpg`,
-  };
-};
-
-const FullSquats = (level: Level, sets: Sets, reps: number): Exercise => {
-  return {
-    group: 'Squats',
-    variant: 'Full squats',
-    level,
-    sets,
-    reps,
-    unit: 'Reps',
-    image: `./images/squats/${level}.jpg`,
-  };
-};
-
-const CloseSquats = (level: Level, sets: Sets, reps: number): Exercise => {
-  return {
-    group: 'Squats',
-    variant: 'Close squats',
-    level,
-    sets,
-    reps,
-    unit: 'Reps',
-    image: `./images/squats/${level}.jpg`,
-  };
-};
-
-const UnevenSquats = (level: Level, sets: Sets, reps: number): Exercise => {
-  return {
-    group: 'Squats',
-    variant: 'Uneven squats',
-    level,
-    sets,
-    reps,
-    unit: 'Reps',
-    image: `./images/squats/${level}.jpg`,
-  };
-};
-
-const HalfOneLegSquats = (level: Level, sets: Sets, reps: number): Exercise => {
-  return {
-    group: 'Squats',
-    variant: 'Half one-leg squats',
-    level,
-    sets,
-    reps,
-    unit: 'Reps',
-    image: `./images/squats/${level}.jpg`,
-  };
-};
-
-const AssistedOneLegSquats = (
-  level: Level,
-  sets: Sets,
-  reps: number
-): Exercise => {
-  return {
-    group: 'Squats',
-    variant: 'Assisted one-leg squats',
-    level,
-    sets,
-    reps,
-    unit: 'Reps',
-    image: `./images/squats/${level}.jpg`,
-  };
-};
-
-const OneLegSquats = (level: Level, sets: Sets, reps: number): Exercise => {
-  return {
-    group: 'Squats',
-    variant: 'One-leg squats',
-    level,
-    sets,
-    reps,
-    unit: 'Reps',
+    unit,
     image: `./images/squats/${level}.jpg`,
   };
 };
