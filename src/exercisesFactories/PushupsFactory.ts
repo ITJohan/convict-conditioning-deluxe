@@ -12,7 +12,7 @@ export const PushupsFactory = (level: Level): Exercise => {
     case 4:
       return InclinePushups(4, 1, 10);
     case 5:
-      return InclinePushups(5, 2, 210);
+      return InclinePushups(5, 2, 20);
     case 6:
       return InclinePushups(6, 3, 40);
 
