@@ -1,5 +1,5 @@
 import React from 'react';
-import { Unit } from '../Types';
+import { Unit } from '../models/Types';
 
 export type SliderProps = {
   id: number;
