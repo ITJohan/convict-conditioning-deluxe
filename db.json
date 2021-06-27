@@ -1,0 +1,22 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "email": "johanlindkvist89@gmail.com",
+      "firstName": "Johan",
+      "lastName": "Lindkvist",
+      "workouts": [
+        {
+          "startDate": "",
+          "endDate": "",
+          "exercises": [
+            {
+              "exerciseId": 1,
+              "sets": [4, 3, 4]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
