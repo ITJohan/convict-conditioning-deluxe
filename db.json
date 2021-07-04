@@ -7,12 +7,158 @@
       "lastName": "Lindkvist",
       "workouts": [
         {
-          "startDate": "",
-          "endDate": "",
+          "startDate": "2021-07-01T15:00:00.000Z",
+          "endDate": "2021-07-01T15:20:00.000Z",
           "exercises": [
             {
-              "exerciseId": 1,
-              "sets": [4, 3, 4]
+              "exercise": {
+                "group": "Pushups",
+                "variant": "Wall pushups",
+                "level": 1,
+                "sets": 1,
+                "reps": 10,
+                "unit": "Reps",
+                "image": "../images/pushups/1.jpg"
+              },
+              "sets": [10]
+            },
+            {
+              "exercise": {
+                "group": "Squats",
+                "variant": "Shoulderstand squats",
+                "level": 1,
+                "sets": 1,
+                "reps": 10,
+                "unit": "Reps",
+                "image": "../images/squats/1.jpg"
+              },
+              "sets": [10]
+            },
+            {
+              "exercise": {
+                "group": "Pullups",
+                "variant": "Vertical pullups",
+                "level": 1,
+                "sets": 1,
+                "reps": 10,
+                "unit": "Reps",
+                "image": "../images/pullups/1.jpg"
+              },
+              "sets": [10]
+            },
+            {
+              "exercise": {
+                "group": "Leg raises",
+                "variant": "Knee tucks",
+                "level": 1,
+                "sets": 1,
+                "reps": 10,
+                "unit": "Reps",
+                "image": "../images/legRaises/1.jpg"
+              },
+              "sets": [10]
+            },
+            {
+              "exercise": {
+                "group": "Bridges",
+                "variant": "Short bridges",
+                "level": 1,
+                "sets": 1,
+                "reps": 10,
+                "unit": "Reps",
+                "image": "../images/bridges/1.jpg"
+              },
+              "sets": [10]
+            },
+            {
+              "exercise": {
+                "group": "Handstands",
+                "variant": "Wall headstands",
+                "level": 1,
+                "sets": 1,
+                "reps": 30,
+                "unit": "Seconds",
+                "image": "../images/handstands/1.jpg"
+              },
+              "sets": [30]
+            }
+          ]
+        },
+        {
+          "startDate": "2021-07-02T18:00:00.000Z",
+          "endDate": "2021-07-02T18:42:00.000Z",
+          "exercises": [
+            {
+              "exercise": {
+                "group": "Pushups",
+                "variant": "Wall pushups",
+                "level": 2,
+                "sets": 2,
+                "reps": 25,
+                "unit": "Reps",
+                "image": "../images/pushups/2.jpg"
+              },
+              "sets": [25, 25]
+            },
+            {
+              "exercise": {
+                "group": "Squats",
+                "variant": "Shoulderstand squats",
+                "level": 2,
+                "sets": 2,
+                "reps": 25,
+                "unit": "Reps",
+                "image": "../images/squats/2.jpg"
+              },
+              "sets": [25, 25]
+            },
+            {
+              "exercise": {
+                "group": "Pullups",
+                "variant": "Vertical pullups",
+                "level": 2,
+                "sets": 2,
+                "reps": 20,
+                "unit": "Reps",
+                "image": "../images/pullups/2.jpg"
+              },
+              "sets": [20, 20]
+            },
+            {
+              "exercise": {
+                "group": "Leg raises",
+                "variant": "Knee tucks",
+                "level": 2,
+                "sets": 2,
+                "reps": 25,
+                "unit": "Reps",
+                "image": "../images/legRaises/2.jpg"
+              },
+              "sets": [25, 25]
+            },
+            {
+              "exercise": {
+                "group": "Bridges",
+                "variant": "Short bridges",
+                "level": 2,
+                "sets": 2,
+                "reps": 25,
+                "unit": "Reps",
+                "image": "../images/bridges/2.jpg"
+              },
+              "sets": [25, 25]
+            },
+            {
+              "exercise": {
+                "group": "Handstands",
+                "variant": "Wall headstands",
+                "level": 2,
+                "sets": 1,
+                "reps": 60,
+                "unit": "Seconds",
+                "image": "../images/handstands/2.jpg"
+              },
+              "sets": [60]
             }
           ]
         }
