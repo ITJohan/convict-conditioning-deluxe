@@ -6,6 +6,8 @@ export type ExerciseFormProps = {
   updateSetReps: (reps: number, index: number) => void;
 };
 
+// TODO: Refactor this to work with WorkoutExercise
+
 const ExerciseForm: React.FC<ExerciseFormProps> = ({
   setReps,
   updateSetReps,

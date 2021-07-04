@@ -80,6 +80,8 @@ const App = (): JSX.Element => {
     sets: [],
   });
 
+  // TODO: Add ExerciseForm and picture after refactor
+
   return (
     <main>
       <h1>Hello</h1>
