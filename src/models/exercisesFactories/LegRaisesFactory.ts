@@ -91,7 +91,7 @@ const LegRaises = (
     sets,
     reps,
     unit,
-    image: `./images/legRaises/${level}.jpg`,
+    image: `../images/legRaises/${level}.jpg`,
   };
 };
 

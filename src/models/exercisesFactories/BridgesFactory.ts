@@ -85,13 +85,13 @@ const Bridges = (
   unit: Unit
 ): Exercise => {
   return {
-    group: 'Handstands',
+    group: 'Bridges',
     variant,
     level,
     sets,
     reps,
     unit,
-    image: `./images/handstands/${level}.jpg`,
+    image: `../images/bridges/${level}.jpg`,
   };
 };
 

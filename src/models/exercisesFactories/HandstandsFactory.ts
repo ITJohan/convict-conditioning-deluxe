@@ -91,7 +91,7 @@ const Handstands = (
     sets,
     reps,
     unit,
-    image: `./images/handstands/${level}.jpg`,
+    image: `../images/handstands/${level}.jpg`,
   };
 };
 

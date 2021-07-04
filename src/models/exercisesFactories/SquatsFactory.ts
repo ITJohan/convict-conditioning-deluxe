@@ -91,7 +91,7 @@ const Squats = (
     sets,
     reps,
     unit,
-    image: `./images/squats/${level}.jpg`,
+    image: `../images/squats/${level}.jpg`,
   };
 };
 

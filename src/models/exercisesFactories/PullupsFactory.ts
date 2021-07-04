@@ -91,7 +91,7 @@ const Pullups = (
     sets,
     reps,
     unit,
-    image: `./images/pullups/${level}.jpg`,
+    image: `../images/pullups/${level}.jpg`,
   };
 };
 
