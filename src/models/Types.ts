@@ -50,13 +50,11 @@ export type Exercise = {
 };
 
 export type WorkoutExercise = {
-  id: string;
-  exerciseId: number;
+  exercise: Exercise;
   sets: number[];
 };
 
 export type Workout = {
-  id: string;
   startDate: Date;
   endDate: Date;
   exercises: WorkoutExercise[];

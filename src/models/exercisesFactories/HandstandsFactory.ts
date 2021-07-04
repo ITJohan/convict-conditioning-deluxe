@@ -1,6 +1,6 @@
 import { Level, Sets, Exercise, Unit } from '../types';
 
-export const HandstandsFactory = (level: Level): Exercise => {
+const HandstandsFactory = (level: Level): Exercise => {
   switch (level) {
     case 1:
       return Handstands('Wall headstands', 1, 1, 30, 'Seconds');
@@ -94,3 +94,5 @@ const Handstands = (
     image: `./images/handstands/${level}.jpg`,
   };
 };
+
+export default HandstandsFactory;

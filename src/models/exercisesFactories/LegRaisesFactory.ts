@@ -1,6 +1,6 @@
 import { Level, Sets, Exercise, Unit } from '../types';
 
-export const LegRaisesFactory = (level: Level): Exercise => {
+const LegRaisesFactory = (level: Level): Exercise => {
   switch (level) {
     case 1:
       return LegRaises('Knee tucks', 1, 1, 10, 'Reps');
@@ -94,3 +94,5 @@ const LegRaises = (
     image: `./images/legRaises/${level}.jpg`,
   };
 };
+
+export default LegRaisesFactory;
