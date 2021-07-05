@@ -1,5 +1,7 @@
 import { Level, Sets, Exercise, Unit } from '../types';
 
+// TODO: Need to refactor all exercises to return a combination of the 3 level groupings
+
 const BridgesFactory = (level: Level): Exercise => {
   switch (level) {
     case 1:

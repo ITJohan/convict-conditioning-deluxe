@@ -57,7 +57,12 @@ export type WorkoutExercise = {
 export type Workout = {
   startDate: Date;
   endDate: Date;
-  exercises: WorkoutExercise[];
+  pushups: WorkoutExercise;
+  squats: WorkoutExercise;
+  pullups: WorkoutExercise;
+  legRaises: WorkoutExercise;
+  bridges: WorkoutExercise;
+  handstands: WorkoutExercise;
 };
 
 export type User = {
