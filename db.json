@@ -161,6 +161,84 @@
               "sets": [60]
             }
           ]
+        },
+        {
+          "startDate": "2021-07-06T16:37:00.000Z",
+          "endDate": "2021-07-02T18:42:00.000Z",
+          "exercises": [
+            {
+              "exercise": {
+                "group": "Pushups",
+                "variant": "Wall pushups",
+                "level": 3,
+                "sets": 3,
+                "reps": 50,
+                "unit": "Reps",
+                "image": "../images/pushups/3.jpg"
+              },
+              "sets": [50, 50, 50]
+            },
+            {
+              "exercise": {
+                "group": "Squats",
+                "variant": "Shoulderstand squats",
+                "level": 3,
+                "sets": 3,
+                "reps": 50,
+                "unit": "Reps",
+                "image": "../images/squats/3.jpg"
+              },
+              "sets": [50, 50, 50]
+            },
+            {
+              "exercise": {
+                "group": "Pullups",
+                "variant": "Vertical pullups",
+                "level": 3,
+                "sets": 3,
+                "reps": 40,
+                "unit": "Reps",
+                "image": "../images/pullups/3.jpg"
+              },
+              "sets": [40, 40, 40]
+            },
+            {
+              "exercise": {
+                "group": "Leg raises",
+                "variant": "Knee tucks",
+                "level": 3,
+                "sets": 3,
+                "reps": 40,
+                "unit": "Reps",
+                "image": "../images/legRaises/3.jpg"
+              },
+              "sets": [40, 40, 40]
+            },
+            {
+              "exercise": {
+                "group": "Bridges",
+                "variant": "Short bridges",
+                "level": 3,
+                "sets": 3,
+                "reps": 50,
+                "unit": "Reps",
+                "image": "../images/bridges/3.jpg"
+              },
+              "sets": [50, 50, 50]
+            },
+            {
+              "exercise": {
+                "group": "Handstands",
+                "variant": "Wall headstands",
+                "level": 3,
+                "sets": 1,
+                "reps": 120,
+                "unit": "Seconds",
+                "image": "../images/handstands/3.jpg"
+              },
+              "sets": [70]
+            }
+          ]
         }
       ]
     }
