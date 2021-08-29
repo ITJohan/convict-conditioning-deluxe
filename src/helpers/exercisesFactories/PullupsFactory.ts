@@ -1,4 +1,4 @@
-import { Level, Sets, Exercise, Unit } from '../types';
+import { Level, Sets, Exercise, Unit } from '../../models/types';
 
 const PullupsFactory = (level: Level): Exercise => {
   switch (level) {

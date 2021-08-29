@@ -1,12 +1,12 @@
 import { v4 as uuidv4 } from 'uuid';
 
 import { Workout, WorkoutExercise } from './models/Types';
-import BridgesFactory from './models/exercisesFactories/BridgesFactory';
-import HandstandsFactory from './models/exercisesFactories/HandstandsFactory';
-import LegRaisesFactory from './models/exercisesFactories/LegRaisesFactory';
-import PullupsFactory from './models/exercisesFactories/PullupsFactory';
-import PushupsFactory from './models/exercisesFactories/PushupsFactory';
-import SquatsFactory from './models/exercisesFactories/SquatsFactory';
+import BridgesFactory from './helpers/exercisesFactories/BridgesFactory';
+import HandstandsFactory from './helpers/exercisesFactories/HandstandsFactory';
+import LegRaisesFactory from './helpers/exercisesFactories/LegRaisesFactory';
+import PullupsFactory from './helpers/exercisesFactories/PullupsFactory';
+import PushupsFactory from './helpers/exercisesFactories/PushupsFactory';
+import SquatsFactory from './helpers/exercisesFactories/SquatsFactory';
 
 export const generateNewWorkout = (prevWorkout: Workout): Workout => {
   const workout: Workout = {
