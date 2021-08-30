@@ -23,6 +23,8 @@ export type WorkoutExercise = {
   sets: number[];
 };
 
+// TODO: Add a WorkoutDto
+
 export type Workout = {
   startDate: Date;
   endDate?: Date;

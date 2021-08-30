@@ -9,38 +9,30 @@
         {
           "startDate": "2021-09-01T15:00:00.000Z",
           "endDate": "2021-09-01T15:20:00.000Z",
-          "exercises": [
-            {
-              "group": "Pushups",
-              "level": 1,
-              "sets": [0, 0, 0]
-            },
-            {
-              "group": "Squats",
-              "level": 1,
-              "sets": [0, 0, 0]
-            },
-            {
-              "group": "Pullups",
-              "level": 1,
-              "sets": [0, 0, 0]
-            },
-            {
-              "group": "Leg raises",
-              "level": 1,
-              "sets": [0, 0, 0]
-            },
-            {
-              "group": "Bridges",
-              "level": 1,
-              "sets": [0, 0, 0]
-            },
-            {
-              "group": "Handstands",
-              "level": 1,
-              "sets": [0, 0, 0]
-            }
-          ]
+          "pushups": {
+            "level": 1,
+            "sets": [0, 0, 0]
+          },
+          "squats": {
+            "level": 1,
+            "sets": [0, 0, 0]
+          },
+          "pullups": {
+            "level": 1,
+            "sets": [0, 0, 0]
+          },
+          "legRaises": {
+            "level": 1,
+            "sets": [0, 0, 0]
+          },
+          "bridges": {
+            "level": 1,
+            "sets": [0, 0, 0]
+          },
+          "handstands": {
+            "level": 1,
+            "sets": [0, 0, 0]
+          }
         }
       ]
     }
