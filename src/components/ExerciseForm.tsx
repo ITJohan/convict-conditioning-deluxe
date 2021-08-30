@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Workout, WorkoutExercise } from '../models/types';
+import { Workout, WorkoutExercise } from '../models/Types';
 import Slider from './Slider';
 
 export type ExerciseFormProps = {

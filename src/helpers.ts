@@ -8,23 +8,18 @@ import PullupsFactory from './helpers/exercisesFactories/PullupsFactory';
 import PushupsFactory from './helpers/exercisesFactories/PushupsFactory';
 import SquatsFactory from './helpers/exercisesFactories/SquatsFactory';
 
-export const generateNewWorkout = (prevWorkout: Workout): Workout => {
-  const workout: Workout = {
+export const generateWorkout = (prevWorkout: Workout): Workout => {
+  return {
     startDate: new Date(),
-    pushups: generateLevel(prevWorkout.pushups),
+    pushups: generateExercise(prevWorkout.pushups),
+    squats: generateExercise(prevWorkout.squats),
+    pullups: generateExercise(prevWorkout.pullups),
+    legRaises: generateExercise(prevWorkout.legRaises),
+    handstands: generateExercise(prevWorkout.handstands),
+    bridges: generateExercise(prevWorkout.bridges)
   }
-
-  return workout;
 };
 
-const generateLevel = (prev: WorkoutExercise): number => {
-  let completed = false;
-
-  for (const reps of prev.sets) {
-    if (reps < prev.exercise.reps) {
-      return prev.exercise.level === 1 ? 1 : prev.exercise.level - 1;
-    } else if (reps >=) {
-
-    }
-  }
+const generateExercise = (prev: WorkoutExercise): WorkoutExercise => {
+  
 }

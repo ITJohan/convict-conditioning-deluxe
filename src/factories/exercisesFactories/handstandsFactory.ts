@@ -1,13 +1,13 @@
-import { Level, Exercise, Group } from '../../models/Types';
+import { Level, Exercise, Group } from '../../models/types';
 
-const HandstandsFactory = (level: Level): Exercise => {
+const handstandsFactory = (level: Level): Exercise => {
   switch (level) {
     case 1:
       return {
         group: Group.handstands,
         variant: 'Wall headstands',
         level,
-        goals: [[30], [60], [120]],
+        goals: [120],
         unit: 'Seconds',
         image: `../images/handstands/${level}.jpg`,
       };
@@ -16,7 +16,7 @@ const HandstandsFactory = (level: Level): Exercise => {
         group: Group.handstands,
         variant: 'Crow stands',
         level,
-        goals: [[10], [30], [60]],
+        goals: [60],
         unit: 'Seconds',
         image: `../images/handstands/${level}.jpg`,
       };
@@ -25,7 +25,7 @@ const HandstandsFactory = (level: Level): Exercise => {
         group: Group.handstands,
         variant: 'Wall handstands',
         level,
-        goals: [[10], [30], [120]],
+        goals: [120],
         unit: 'Seconds',
         image: `../images/handstands/${level}.jpg`,
       };
@@ -34,7 +34,7 @@ const HandstandsFactory = (level: Level): Exercise => {
         group: Group.handstands,
         variant: 'Half handstand pushups',
         level,
-        goals: [[5], [10, 10], [20, 20]],
+        goals: [20, 20],
         unit: 'Reps',
         image: `../images/handstands/${level}.jpg`,
       };
@@ -43,7 +43,7 @@ const HandstandsFactory = (level: Level): Exercise => {
         group: Group.handstands,
         variant: 'Handstand pushups',
         level,
-        goals: [[5], [10, 10], [15, 15]],
+        goals: [15, 15],
         unit: 'Reps',
         image: `../images/handstands/${level}.jpg`,
       };
@@ -52,7 +52,7 @@ const HandstandsFactory = (level: Level): Exercise => {
         group: Group.handstands,
         variant: 'Close handstand pushups',
         level,
-        goals: [[5], [9, 9], [12, 12]],
+        goals: [12, 12],
         unit: 'Reps',
         image: `../images/handstands/${level}.jpg`,
       };
@@ -61,7 +61,7 @@ const HandstandsFactory = (level: Level): Exercise => {
         group: Group.handstands,
         variant: 'Uneven handstand pushups',
         level,
-        goals: [[5], [8, 8], [10, 10]],
+        goals: [10, 10],
         unit: 'Reps',
         image: `../images/handstands/${level}.jpg`,
       };
@@ -70,7 +70,7 @@ const HandstandsFactory = (level: Level): Exercise => {
         group: Group.handstands,
         variant: '1/2 one-arm handstand pushups',
         level,
-        goals: [[4], [6, 6], [8, 8]],
+        goals: [8, 8],
         unit: 'Reps',
         image: `../images/handstands/${level}.jpg`,
       };
@@ -79,7 +79,7 @@ const HandstandsFactory = (level: Level): Exercise => {
         group: Group.handstands,
         variant: 'Level handstand pushups',
         level,
-        goals: [[3], [4, 4], [6, 6]],
+        goals: [6, 6],
         unit: 'Reps',
         image: `../images/handstands/${level}.jpg`,
       };
@@ -88,11 +88,11 @@ const HandstandsFactory = (level: Level): Exercise => {
         group: Group.handstands,
         variant: 'One-arm handstand pushups',
         level,
-        goals: [[1], [2, 2], [5]],
+        goals: [5],
         unit: 'Reps',
         image: `../images/handstands/${level}.jpg`,
       };
   }
 };
 
-export default HandstandsFactory;
+export default handstandsFactory;

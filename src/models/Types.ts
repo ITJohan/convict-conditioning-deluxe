@@ -13,7 +13,7 @@ export type Exercise = {
   group: Group;
   variant: string;
   level: Level;
-  goals: number[][];
+  goals: number[];
   unit: Unit;
   image: string;
 };
@@ -25,7 +25,7 @@ export type WorkoutExercise = {
 
 export type Workout = {
   startDate: Date;
-  endDate: Date;
+  endDate?: Date;
   pushups: WorkoutExercise;
   squats: WorkoutExercise;
   pullups: WorkoutExercise;
