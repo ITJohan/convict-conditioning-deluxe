@@ -1,39 +1,42 @@
 import React, { useState } from 'react';
-import { Workout, WorkoutExercise } from '../models/Types';
+import { Workout, WorkoutExercise } from '../models/types';
 import Slider from './Slider';
 
 export type ExerciseFormProps = {
+  prevExercise: WorkoutExercise;
   setWorkout: (workout: Workout) => void;
 };
 
 const ExerciseForm: React.FC<ExerciseFormProps> = ({
-  setWorkout,
+  prevExercise,
+  setWorkout
 }): JSX.Element => {
-  const [workoutExercise, setWorkoutExercise] = useState<WorkoutExercise>();
+  const [exercise, setExercise] = useState<WorkoutExercise>(prevExercise);
 
   const submit = (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
 
-    console.table(workoutExercise);
+    // TODO: Save to workout
+    console.table(exercise);
   };
 
   const updateSetReps = (reps: number, index: number) => {
-    const workoutExerciseCopy = { ...workoutExercise };
+    const workoutExerciseCopy = { ...exercise };
     workoutExerciseCopy.sets[index] = reps;
-    setWorkoutExercise(workoutExerciseCopy);
+    setExercise(workoutExerciseCopy);
   };
 
   return (
     <form>
-      {workoutExercise.sets.map((reps, index) => {
+      {exercise.sets.map((reps, index) => {
         return (
           <Slider
             key={index}
             id={index}
             reps={reps}
             updateSetReps={updateSetReps}
-            maxReps={workoutExercise.exercise.reps}
-            unit={workoutExercise.exercise.unit}
+            maxReps={exercise.exercise.goals[0]}
+            unit={exercise.exercise.unit}
           />
         );
       })}
