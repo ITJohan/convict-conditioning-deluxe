@@ -19,7 +19,6 @@ const App = (): JSX.Element => {
       setExercise(exerciseFactory(Group.pushups, workout.pushups.level));
     });
   }, []);
-  // TODO: Add ExerciseForm and picture after refactor
 
   if (!user || !workout || !exercise) {
     return <main>Loading...</main>;
@@ -28,7 +27,15 @@ const App = (): JSX.Element => {
   return (
     <main>
       <h1>Hello {user.firstName}!</h1>
-      <ExerciseForm exercise={exercise} workout={workout} setWorkout={setWorkout} />
+      <img src={exercise.image} alt='Exercise instructions' />
+      <ExerciseForm
+        exercise={exercise}
+        setExercise={setExercise}
+        workout={workout}
+        setWorkout={setWorkout}
+        user={user}
+        setUser={setUser}
+      />
     </main>
   );
 };

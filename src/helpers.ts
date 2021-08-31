@@ -18,11 +18,12 @@ export const generateExercise = (prev: WorkoutExerciseDto, group: Group): Workou
 
   if (prev.sets.every((v, i) => v === prevExercise.goals[i])) {
     const nextLevel = incrementLevel(prev.level);
+    const nextExercise = exerciseFactory(group, nextLevel);
 
     return {
       level: nextLevel,
-      sets: []
-    }
+      sets: nextExercise.goals.fill(0)
+    };
   } else {
     return { ...prev };
   }
