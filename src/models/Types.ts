@@ -1,10 +1,10 @@
 export enum Group {
-  pushups = 1,
-  squats = 2,
-  pullups = 3,
-  legRaises = 4,
-  bridges = 5,
-  handstands = 6,
+  pushups = 'pushups',
+  squats = 'squats',
+  pullups = 'pullups',
+  legRaises = 'legRaises',
+  bridges = 'bridges',
+  handstands = 'handstands'
 }
 export type Level = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
 export type Unit = 'Reps' | 'Seconds';
@@ -19,21 +19,24 @@ export type Exercise = {
 };
 
 export type WorkoutExercise = {
-  exercise: Exercise;
+  exercise: Exercise
   sets: number[];
 };
 
-// TODO: Add a WorkoutDto
+export type WorkoutExerciseDto = {
+  level: Level;
+  sets: number[];
+};
 
 export type Workout = {
   startDate: Date;
   endDate?: Date;
-  pushups: WorkoutExercise;
-  squats: WorkoutExercise;
-  pullups: WorkoutExercise;
-  legRaises: WorkoutExercise;
-  bridges: WorkoutExercise;
-  handstands: WorkoutExercise;
+  pushups: WorkoutExerciseDto;
+  squats: WorkoutExerciseDto;
+  pullups: WorkoutExerciseDto;
+  legRaises: WorkoutExerciseDto;
+  bridges: WorkoutExerciseDto;
+  handstands: WorkoutExerciseDto;
 };
 
 export type User = {

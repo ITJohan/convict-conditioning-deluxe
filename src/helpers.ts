@@ -1,23 +1,26 @@
 import { exerciseFactory } from './factories/exerciseFactory';
-import { Level, Workout, WorkoutExercise } from './models/types';
+import { Group, Level, Workout, WorkoutExerciseDto } from './models/types';
 
 export const generateWorkout = (prev: Workout): Workout => {
   return {
     startDate: new Date(),
-    pushups: generateExercise(prev.pushups),
-    squats: generateExercise(prev.squats),
-    pullups: generateExercise(prev.pullups),
-    legRaises: generateExercise(prev.legRaises),
-    handstands: generateExercise(prev.handstands),
-    bridges: generateExercise(prev.bridges)
+    pushups: generateExercise(prev.pushups, Group.pushups),
+    squats: generateExercise(prev.squats, Group.squats),
+    pullups: generateExercise(prev.pullups, Group.pullups),
+    legRaises: generateExercise(prev.legRaises, Group.legRaises),
+    handstands: generateExercise(prev.handstands, Group.handstands),
+    bridges: generateExercise(prev.bridges, Group.bridges)
   }
 };
 
-export const generateExercise = (prev: WorkoutExercise): WorkoutExercise => {
-  if (prev.sets.every((v, i) => v === prev.exercise.goals[i])) {
-    const nextLevel = incrementLevel(prev.exercise.level);
+export const generateExercise = (prev: WorkoutExerciseDto, group: Group): WorkoutExerciseDto => {
+  const prevExercise = exerciseFactory(group, prev.level);
+
+  if (prev.sets.every((v, i) => v === prevExercise.goals[i])) {
+    const nextLevel = incrementLevel(prev.level);
+
     return {
-      exercise: exerciseFactory(prev.exercise.group, nextLevel),
+      level: nextLevel,
       sets: []
     }
   } else {
