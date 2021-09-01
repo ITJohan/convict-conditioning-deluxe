@@ -12,6 +12,7 @@ const App = (): JSX.Element => {
   const [exercise, setExercise] = useState<Exercise>();
 
   useEffect(() => {
+    // TODO: Move url to env
     axios.get<User>('http://localhost:3000/users/1').then((res) => {
       setUser(res.data);
       const workout = generateWorkout(res.data.workouts[res.data.workouts.length - 1])
@@ -20,7 +21,7 @@ const App = (): JSX.Element => {
     });
   }, []);
 
-  // TODO: Move submit functionality here?
+  // TODO: Move submit functionality from ExerciseForm here?
 
   if (!user || !workout || !exercise) {
     return <main>Loading...</main>;

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React from 'react';
+import React, { useState } from 'react';
 import { exerciseFactory } from '../factories/exerciseFactory';
 import { Exercise, Group, User, Workout } from '../models/types';
 import Slider from './Slider';
@@ -21,6 +21,9 @@ const ExerciseForm: React.FC<ExerciseFormProps> = ({
   user,
   setUser
 }): JSX.Element => {
+  // TODO: Move to App
+  const [isFinished, setIsFinished] = useState(false);
+
   const submit = (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
 
@@ -41,13 +44,14 @@ const ExerciseForm: React.FC<ExerciseFormProps> = ({
         setExercise(exerciseFactory(Group.handstands, workout.handstands.level))
         break;
       case Group.handstands:
-        console.log('Finished!');
         const userCopy = { ...user };
         const workoutCopy = { ...workout };
         workoutCopy.endDate = new Date();
         userCopy.workouts.push(workoutCopy);
+        // TODO: Move url to env
         axios.patch('http://localhost:3000/users/1', userCopy);
         setUser(userCopy);
+        setIsFinished(true);
         break;
     }
   };
@@ -57,6 +61,10 @@ const ExerciseForm: React.FC<ExerciseFormProps> = ({
     workoutCopy[exercise.group].sets[index] = reps;
     setWorkout(workoutCopy);
   };
+
+  if (isFinished) {
+    return <h2>Finished!</h2>
+  }
 
   return (
     <form>
