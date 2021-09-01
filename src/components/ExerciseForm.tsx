@@ -6,66 +6,17 @@ import Slider from './Slider';
 
 export type ExerciseFormProps = {
   exercise: Exercise;
-  setExercise: (exercise: Exercise) => void;
   workout: Workout;
-  setWorkout: (workout: Workout) => void;
-  user: User;
-  setUser: (user: User) => void;
+  updateWorkout: (reps: number, index: number) => void;
+  submitWorkout: (e: React.FormEvent<HTMLButtonElement>) => void;
 };
 
 const ExerciseForm: React.FC<ExerciseFormProps> = ({
   exercise,
-  setExercise,
   workout,
-  setWorkout,
-  user,
-  setUser
+  updateWorkout,
+  submitWorkout
 }): JSX.Element => {
-  // TODO: Move to App
-  const [isFinished, setIsFinished] = useState(false);
-
-  const submit = (e: React.FormEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-
-    switch (exercise.group) {
-      case Group.pushups:
-        setExercise(exerciseFactory(Group.squats, workout.squats.level))
-        break;
-      case Group.squats:
-        setExercise(exerciseFactory(Group.pullups, workout.pullups.level))
-        break;
-      case Group.pullups:
-        setExercise(exerciseFactory(Group.legRaises, workout.legRaises.level))
-        break;
-      case Group.legRaises:
-        setExercise(exerciseFactory(Group.bridges, workout.bridges.level))
-        break;
-      case Group.bridges:
-        setExercise(exerciseFactory(Group.handstands, workout.handstands.level))
-        break;
-      case Group.handstands:
-        const userCopy = { ...user };
-        const workoutCopy = { ...workout };
-        workoutCopy.endDate = new Date();
-        userCopy.workouts.push(workoutCopy);
-        // TODO: Move url to env
-        axios.patch('http://localhost:3000/users/1', userCopy);
-        setUser(userCopy);
-        setIsFinished(true);
-        break;
-    }
-  };
-
-  const updateWorkout = (reps: number, index: number) => {
-    const workoutCopy = { ...workout };
-    workoutCopy[exercise.group].sets[index] = reps;
-    setWorkout(workoutCopy);
-  };
-
-  if (isFinished) {
-    return <h2>Finished!</h2>
-  }
-
   return (
     <form>
       <p>Rep goal: {exercise.goals[0]}</p>
@@ -82,7 +33,7 @@ const ExerciseForm: React.FC<ExerciseFormProps> = ({
         );
       })}
 
-      <button onClick={submit}>Done</button>
+      <button onClick={submitWorkout}>Done</button>
     </form>
   );
 };

@@ -10,6 +10,7 @@ const App = (): JSX.Element => {
   const [user, setUser] = useState<User>();
   const [workout, setWorkout] = useState<Workout>();
   const [exercise, setExercise] = useState<Exercise>();
+  const [isFinished, setIsFinished] = useState(false);
 
   useEffect(() => {
     // TODO: Move url to env
@@ -21,23 +22,62 @@ const App = (): JSX.Element => {
     });
   }, []);
 
-  // TODO: Move submit functionality from ExerciseForm here?
+  if (isFinished) {
+    return <h2>Finished, good job!</h2>
+  }
 
   if (!user || !workout || !exercise) {
     return <main>Loading...</main>;
   }
 
+  const submitWorkout = (e: React.FormEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+
+    switch (exercise.group) {
+      case Group.pushups:
+        setExercise(exerciseFactory(Group.squats, workout.squats.level))
+        break;
+      case Group.squats:
+        setExercise(exerciseFactory(Group.pullups, workout.pullups.level))
+        break;
+      case Group.pullups:
+        setExercise(exerciseFactory(Group.legRaises, workout.legRaises.level))
+        break;
+      case Group.legRaises:
+        setExercise(exerciseFactory(Group.bridges, workout.bridges.level))
+        break;
+      case Group.bridges:
+        setExercise(exerciseFactory(Group.handstands, workout.handstands.level))
+        break;
+      case Group.handstands:
+        const userCopy = { ...user };
+        const workoutCopy = { ...workout };
+        workoutCopy.endDate = new Date();
+        userCopy.workouts.push(workoutCopy);
+        // TODO: Move url to env
+        axios.patch('http://localhost:3000/users/1', userCopy);
+        setUser(userCopy);
+        setIsFinished(true);
+        break;
+    }
+  };
+
+  const updateWorkout = (reps: number, index: number) => {
+    const workoutCopy = { ...workout };
+    workoutCopy[exercise.group].sets[index] = reps;
+    setWorkout(workoutCopy);
+  };
+
   return (
     <main>
-      <h1>Hello {user.firstName}!</h1>
-      <img src={exercise.image} alt='Exercise instructions' />
+      <h1>Convict Conditioning Deluxe</h1>
+      <h2>{exercise.group.charAt(0).toUpperCase() + exercise.group.slice(1)} level {exercise.level}, {exercise.variant.toLowerCase()}</h2>
+      <img width={400} src={exercise.image} alt='Exercise instructions' />
       <ExerciseForm
         exercise={exercise}
-        setExercise={setExercise}
         workout={workout}
-        setWorkout={setWorkout}
-        user={user}
-        setUser={setUser}
+        updateWorkout={updateWorkout}
+        submitWorkout={submitWorkout}
       />
     </main>
   );
