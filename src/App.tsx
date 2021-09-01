@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import db from './services/firebase';
+import { collection, doc, getDoc } from 'firebase/firestore';
 
 import { Exercise, Group, User, Workout } from './models/types';
 import ExerciseForm from './components/ExerciseForm';
@@ -13,14 +15,22 @@ const App = (): JSX.Element => {
   const [isFinished, setIsFinished] = useState(false);
 
   useEffect(() => {
+    const fetchUsers = async () => {
+      const userSnapshot = await getDoc(doc(db, 'users', 'MxfdhA0c01I1KUX4Vf8d/workouts/xr4s8xfjsWLkK7AHhLeJ'));
+      const user = userSnapshot.data();
+      console.log(user);
+    }
+
+    fetchUsers();
     // TODO: Move url to env
-    axios.get<User>('http://localhost:3000/users/1').then((res) => {
-      setUser(res.data);
-      const workout = generateWorkout(res.data.workouts[res.data.workouts.length - 1])
-      setWorkout(workout)
-      setExercise(exerciseFactory(Group.pushups, workout.pushups.level));
-    });
+    // axios.get<User>('http://localhost:3000/users/1').then((res) => {
+    //   setUser(res.data);
+    //   const workout = generateWorkout(res.data.workouts[res.data.workouts.length - 1])
+    //   setWorkout(workout)
+    //   setExercise(exerciseFactory(Group.pushups, workout.pushups.level));
+    // });
   }, []);
+
 
   if (isFinished) {
     return <h2>Finished, good job!</h2>
