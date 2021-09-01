@@ -46,7 +46,7 @@ const ExerciseForm: React.FC<ExerciseFormProps> = ({
         const workoutCopy = { ...workout };
         workoutCopy.endDate = new Date();
         userCopy.workouts.push(workoutCopy);
-        axios.put('http://localhost:3000/users/1', userCopy);
+        axios.patch('http://localhost:3000/users/1', userCopy);
         setUser(userCopy);
         break;
     }

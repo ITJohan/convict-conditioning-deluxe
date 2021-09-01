@@ -25,7 +25,10 @@ export const generateExercise = (prev: WorkoutExerciseDto, group: Group): Workou
       sets: nextExercise.goals.fill(0)
     };
   } else {
-    return { ...prev };
+    return {
+      level: prev.level,
+      sets: [ ...prev.sets ]
+     };
   }
 };
 

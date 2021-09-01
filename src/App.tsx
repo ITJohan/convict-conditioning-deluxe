@@ -12,13 +12,15 @@ const App = (): JSX.Element => {
   const [exercise, setExercise] = useState<Exercise>();
 
   useEffect(() => {
-      axios.get<User>('http://localhost:3000/users/1').then((res) => {
+    axios.get<User>('http://localhost:3000/users/1').then((res) => {
       setUser(res.data);
       const workout = generateWorkout(res.data.workouts[res.data.workouts.length - 1])
       setWorkout(workout)
       setExercise(exerciseFactory(Group.pushups, workout.pushups.level));
     });
   }, []);
+
+  // TODO: Move submit functionality here?
 
   if (!user || !workout || !exercise) {
     return <main>Loading...</main>;
