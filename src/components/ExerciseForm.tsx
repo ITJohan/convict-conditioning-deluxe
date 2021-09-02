@@ -1,7 +1,5 @@
-import axios from 'axios';
-import React, { useState } from 'react';
-import { exerciseFactory } from '../factories/exerciseFactory';
-import { Exercise, Group, User, Workout } from '../models/types';
+import React from 'react';
+import { Exercise, Workout } from '../models/types';
 import Slider from './Slider';
 
 export type ExerciseFormProps = {

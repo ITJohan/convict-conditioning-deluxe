@@ -29,8 +29,8 @@ export type WorkoutExerciseDto = {
 };
 
 export type Workout = {
-  startDate: Date;
-  endDate?: Date;
+  start: Date;
+  end?: Date;
   pushups: WorkoutExerciseDto;
   squats: WorkoutExerciseDto;
   pullups: WorkoutExerciseDto;
@@ -40,7 +40,6 @@ export type Workout = {
 };
 
 export type User = {
-  id: string;
   email: string;
   firstName: string;
   lastName: string;

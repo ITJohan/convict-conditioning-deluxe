@@ -1,34 +1,49 @@
 import { useState, useEffect } from 'react';
-import axios from 'axios';
-import db from './services/firebase';
-import { collection, doc, getDoc } from 'firebase/firestore';
+import app from './services/firebase';
+import { getAuth, signInWithPopup, GoogleAuthProvider, UserCredential } from "firebase/auth";
+import { getFirestore, collection, getDocs, query, addDoc, orderBy } from 'firebase/firestore';
 
-import { Exercise, Group, User, Workout } from './models/types';
+import { Exercise, Group, Workout } from './models/types';
 import ExerciseForm from './components/ExerciseForm';
-import { generateWorkout } from './helpers';
+import { generateWorkout, transformToWorkout } from './helpers';
 import { exerciseFactory } from './factories/exerciseFactory';
 
 const App = (): JSX.Element => {
-  const [user, setUser] = useState<User>();
+  const [user, setUser] = useState<UserCredential>();
   const [workout, setWorkout] = useState<Workout>();
+  const [workouts, setWorkouts] = useState<Workout[]>();
   const [exercise, setExercise] = useState<Exercise>();
   const [isFinished, setIsFinished] = useState(false);
 
   useEffect(() => {
-    const fetchUsers = async () => {
-      const userSnapshot = await getDoc(doc(db, 'users', 'MxfdhA0c01I1KUX4Vf8d/workouts/xr4s8xfjsWLkK7AHhLeJ'));
-      const user = userSnapshot.data();
-      console.log(user);
-    }
+    const provider = new GoogleAuthProvider();
+    const auth = getAuth(app);
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        setUser(result);
 
-    fetchUsers();
-    // TODO: Move url to env
-    // axios.get<User>('http://localhost:3000/users/1').then((res) => {
-    //   setUser(res.data);
-    //   const workout = generateWorkout(res.data.workouts[res.data.workouts.length - 1])
-    //   setWorkout(workout)
-    //   setExercise(exerciseFactory(Group.pushups, workout.pushups.level));
-    // });
+        const db = getFirestore(app);
+        const q = query(collection(db, `users/${result.user.uid}/workouts`), orderBy('end'));
+        getDocs(q)
+          .then(results => {
+            const workouts: Workout[] = [];
+            results.forEach(result => {
+              const workout = transformToWorkout(result);
+              workouts.push(workout);
+
+            })
+            setWorkouts(workouts);
+
+            // Create new workout from previous
+            const workout = generateWorkout(workouts[workouts.length - 1])
+            setWorkout(workout)
+            setExercise(exerciseFactory(Group.pushups, workout.pushups.level));
+          })
+          .catch(error => console.error(error));
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   }, []);
 
 
@@ -36,7 +51,7 @@ const App = (): JSX.Element => {
     return <h2>Finished, good job!</h2>
   }
 
-  if (!user || !workout || !exercise) {
+  if (!user || !workout || !workouts || !exercise) {
     return <main>Loading...</main>;
   }
 
@@ -60,13 +75,14 @@ const App = (): JSX.Element => {
         setExercise(exerciseFactory(Group.handstands, workout.handstands.level))
         break;
       case Group.handstands:
-        const userCopy = { ...user };
         const workoutCopy = { ...workout };
-        workoutCopy.endDate = new Date();
-        userCopy.workouts.push(workoutCopy);
-        // TODO: Move url to env
-        axios.patch('http://localhost:3000/users/1', userCopy);
-        setUser(userCopy);
+        workoutCopy.end = new Date();
+        setWorkouts([...workouts, workoutCopy]);
+        const db = getFirestore(app);
+        addDoc(collection(db, `users/${user.user.uid}/workouts`), workoutCopy)
+          .then(docRef => console.log('Document written with ID: ', docRef.id))
+          .catch(error => console.error(error));
+
         setIsFinished(true);
         break;
     }
