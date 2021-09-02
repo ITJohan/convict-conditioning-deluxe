@@ -27,11 +27,42 @@ const App = (): JSX.Element => {
         getDocs(q)
           .then(results => {
             const workouts: Workout[] = [];
-            results.forEach(result => {
-              const workout = transformToWorkout(result);
-              workouts.push(workout);
-
-            })
+            if (results.empty) {
+              // TODO: Refactor this
+              workouts.push({
+                start: new Date(),
+                end: new Date(),
+                pushups: {
+                  level: 1,
+                  sets: [0, 0, 0]
+                },
+                squats: {
+                  level: 1,
+                  sets: [0, 0, 0]
+                },
+                pullups: {
+                  level: 1,
+                  sets: [0, 0, 0]
+                },
+                legRaises: {
+                  level: 1,
+                  sets: [0, 0, 0]
+                },
+                bridges: {
+                  level: 1,
+                  sets: [0, 0, 0]
+                },
+                handstands: {
+                  level: 1,
+                  sets: [0]
+                },
+              })
+            } else {
+              results.forEach(result => {
+                const workout = transformToWorkout(result);
+                workouts.push(workout);
+              })
+            }
             setWorkouts(workouts);
 
             // Create new workout from previous
