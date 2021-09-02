@@ -63,21 +63,22 @@ const App = (): JSX.Element => {
 
     switch (exercise.group) {
       case Group.pushups:
-        setExercise(exerciseFactory(Group.squats, workout.squats.level))
+        setExercise(exerciseFactory(Group.squats, workout.squats.level));
         break;
       case Group.squats:
-        setExercise(exerciseFactory(Group.pullups, workout.pullups.level))
+        setExercise(exerciseFactory(Group.pullups, workout.pullups.level));
         break;
       case Group.pullups:
-        setExercise(exerciseFactory(Group.legRaises, workout.legRaises.level))
+        setExercise(exerciseFactory(Group.legRaises, workout.legRaises.level));
         break;
       case Group.legRaises:
-        setExercise(exerciseFactory(Group.bridges, workout.bridges.level))
+        setExercise(exerciseFactory(Group.bridges, workout.bridges.level));
         break;
       case Group.bridges:
-        setExercise(exerciseFactory(Group.handstands, workout.handstands.level))
+        setExercise(exerciseFactory(Group.handstands, workout.handstands.level));
         break;
       case Group.handstands:
+        // TODO: Create a repository for database access
         const workoutCopy = { ...workout };
         workoutCopy.end = new Date();
         setWorkouts([...workouts, workoutCopy]);
