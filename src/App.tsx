@@ -46,6 +46,9 @@ const App = (): JSX.Element => {
       });
   }, []);
 
+  // TODO: Show login if not logged in
+
+  // TODO: Show logout if logged in
 
   if (isFinished) {
     return <h2>Finished, good job!</h2>
