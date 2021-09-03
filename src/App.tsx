@@ -1,92 +1,43 @@
 import { useState, useEffect } from 'react';
-import app from './services/firebase';
-import { getAuth, signInWithPopup, GoogleAuthProvider, UserCredential } from "firebase/auth";
-import { getFirestore, collection, getDocs, query, addDoc, orderBy } from 'firebase/firestore';
 
-import { Exercise, Group, Workout } from './models/types';
+import firebaseService from './services/firebase';
+import { Exercise, Group, Workout, WorkoutService } from './models/types';
 import ExerciseForm from './components/ExerciseForm';
-import { generateWorkout, transformToWorkout } from './helpers';
 import { exerciseFactory } from './factories/exerciseFactory';
+import { generateWorkout } from './helpers';
 
 const App = (): JSX.Element => {
-  const [user, setUser] = useState<UserCredential>();
   const [workout, setWorkout] = useState<Workout>();
   const [workouts, setWorkouts] = useState<Workout[]>();
   const [exercise, setExercise] = useState<Exercise>();
   const [isFinished, setIsFinished] = useState(false);
+  const [firebase, setFirebase] = useState<WorkoutService>();
 
   useEffect(() => {
-    const provider = new GoogleAuthProvider();
-    const auth = getAuth(app);
-    signInWithPopup(auth, provider)
-      .then((result) => {
-        setUser(result);
-
-        const db = getFirestore(app);
-        const q = query(collection(db, `users/${result.user.uid}/workouts`), orderBy('end'));
-        getDocs(q)
-          .then(results => {
-            const workouts: Workout[] = [];
-            if (results.empty) {
-              // TODO: Refactor this
-              workouts.push({
-                start: new Date(),
-                end: new Date(),
-                pushups: {
-                  level: 1,
-                  sets: [0, 0, 0]
-                },
-                squats: {
-                  level: 1,
-                  sets: [0, 0, 0]
-                },
-                pullups: {
-                  level: 1,
-                  sets: [0, 0, 0]
-                },
-                legRaises: {
-                  level: 1,
-                  sets: [0, 0, 0]
-                },
-                bridges: {
-                  level: 1,
-                  sets: [0, 0, 0]
-                },
-                handstands: {
-                  level: 1,
-                  sets: [0]
-                },
-              })
-            } else {
-              results.forEach(result => {
-                const workout = transformToWorkout(result);
-                workouts.push(workout);
-              })
-            }
-            setWorkouts(workouts);
-
-            // Create new workout from previous
-            const workout = generateWorkout(workouts[workouts.length - 1])
-            setWorkout(workout)
-            setExercise(exerciseFactory(Group.pushups, workout.pushups.level));
-          })
-          .catch(error => console.error(error));
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    setFirebase(firebaseService());
   }, []);
 
-  // TODO: Show login if not logged in
-
-  // TODO: Show logout if logged in
-
-  if (isFinished) {
-    return <h2>Finished, good job!</h2>
+  if (!firebase) {
+    return <main>Loading...</main>;
   }
 
-  if (!user || !workout || !workouts || !exercise) {
-    return <main>Loading...</main>;
+  const login = async () => {
+    await firebase.login();
+
+    const workouts = await firebase.getWorkouts();
+    const workout = generateWorkout(workouts[workouts.length - 1])
+    setWorkouts(workouts);
+    setWorkout(workout)
+    setExercise(exerciseFactory(Group.pushups, workout.pushups.level));
+  }
+
+  if (!workouts || !workout || !exercise) {
+    return (
+      <>
+        <h1>Convict Conditioning Deluxe</h1>
+        <button onClick={login}>Login</button>
+      </>
+    );
   }
 
   const submitWorkout = (e: React.FormEvent<HTMLButtonElement>) => {
@@ -109,15 +60,16 @@ const App = (): JSX.Element => {
         setExercise(exerciseFactory(Group.handstands, workout.handstands.level));
         break;
       case Group.handstands:
-        // TODO: Create a repository for database access
         const workoutCopy = { ...workout };
         workoutCopy.end = new Date();
-        setWorkouts([...workouts, workoutCopy]);
-        const db = getFirestore(app);
-        addDoc(collection(db, `users/${user.user.uid}/workouts`), workoutCopy)
-          .then(docRef => console.log('Document written with ID: ', docRef.id))
-          .catch(error => console.error(error));
 
+        try {
+          firebase.postWorkout(workoutCopy);
+        } catch (error) {
+          console.error(error);
+          return;
+        }
+        setWorkouts([...workouts, workoutCopy]);
         setIsFinished(true);
         break;
     }
@@ -132,14 +84,19 @@ const App = (): JSX.Element => {
   return (
     <main>
       <h1>Convict Conditioning Deluxe</h1>
-      <h2>{exercise.group.charAt(0).toUpperCase() + exercise.group.slice(1)} level {exercise.level}, {exercise.variant.toLowerCase()}</h2>
-      <img width={400} src={exercise.image} alt='Exercise instructions' />
-      <ExerciseForm
-        exercise={exercise}
-        workout={workout}
-        updateWorkout={updateWorkout}
-        submitWorkout={submitWorkout}
-      />
+      {isFinished ?
+        <h2>Finished, good job!</h2> :
+        <>
+          <h2>{exercise.group.charAt(0).toUpperCase() + exercise.group.slice(1)} level {exercise.level}, {exercise.variant.toLowerCase()}</h2>
+          <img width={400} src={exercise.image} alt='Exercise instructions' />
+          <ExerciseForm
+            exercise={exercise}
+            workout={workout}
+            updateWorkout={updateWorkout}
+            submitWorkout={submitWorkout}
+          />
+        </>
+      }
     </main>
   );
 };

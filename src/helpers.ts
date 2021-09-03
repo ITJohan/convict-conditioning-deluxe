@@ -1,6 +1,5 @@
 import { exerciseFactory } from './factories/exerciseFactory';
 import { Group, Level, Workout, WorkoutExerciseDto } from './models/types';
-import { QueryDocumentSnapshot } from 'firebase/firestore';
 
 export const generateWorkout = (prev: Workout): Workout => {
   return {
@@ -32,25 +31,6 @@ export const generateExercise = (prev: WorkoutExerciseDto, group: Group): Workou
      };
   }
 };
-
-export const transformToWorkout = (snapshot: QueryDocumentSnapshot): Workout => {
-  return {
-    start: new Date(snapshot.get('start').seconds * 1000),
-    end: new Date(snapshot.get('end').seconds * 1000),
-    pushups: transformToWorkoutExercise(snapshot.get('pushups')),
-    squats: transformToWorkoutExercise(snapshot.get('squats')),
-    pullups: transformToWorkoutExercise(snapshot.get('pullups')),
-    legRaises: transformToWorkoutExercise(snapshot.get('legRaises')),
-    bridges: transformToWorkoutExercise(snapshot.get('bridges')),
-    handstands: transformToWorkoutExercise(snapshot.get('handstands')),
-  }
-}
-
-const transformToWorkoutExercise = (source: any): WorkoutExerciseDto => {
-  const level = source.level as Level;
-  const sets = source.sets as number[];
-  return { level, sets }
-}
 
 export const incrementLevel = (level: Level): Level => {
   switch (level) {

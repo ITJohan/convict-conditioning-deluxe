@@ -39,9 +39,8 @@ export type Workout = {
   handstands: WorkoutExerciseDto;
 };
 
-export type User = {
-  email: string;
-  firstName: string;
-  lastName: string;
-  workouts: Workout[];
-};
+export type WorkoutService = {
+  login(): void;
+  getWorkouts(): Promise<Workout[]>;
+  postWorkout(workout: Workout): void;
+}
