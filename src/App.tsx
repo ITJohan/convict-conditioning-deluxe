@@ -12,10 +12,17 @@ const App = (): JSX.Element => {
   const [exercise, setExercise] = useState<Exercise>();
   const [isFinished, setIsFinished] = useState(false);
   const [firebase, setFirebase] = useState<WorkoutService>();
+  const [timer, setTimer] = useState(0);
 
   useEffect(() => {
     setFirebase(firebaseService());
   }, []);
+
+  useEffect(() => {
+    if (timer <= 0) return;
+    const timeoutId = setTimeout(() => setTimer(timer - 1), 1000);
+    return () => clearTimeout(timeoutId);
+  }, [timer]);
 
   if (!firebase) {
     return <main>Loading...</main>;
@@ -87,18 +94,19 @@ const App = (): JSX.Element => {
     const workoutCopy = { ...workout };
     workoutCopy[exercise.group].sets[index] = reps;
     setWorkout(workoutCopy);
+    setTimer(90);
   };
 
   return (
     <main>
       <h1>Convict Conditioning Deluxe</h1>
-      <hr />
       {isFinished ?
         <h2>Finished, good job!</h2> :
         <>
           <h2>{exercise.group.charAt(0).toUpperCase() + exercise.group.slice(1)} level {exercise.level}, {exercise.variant.toLowerCase()}</h2>
           <img width={400} src={exercise.image} alt='Exercise instructions' />
-          <hr />
+          <p>Rep goal: {exercise.goals[0]}</p>
+          <p>{timer === 0 ? 'Hit it!' : `Countdown: ${timer}`}</p>
           <ExerciseForm
             exercise={exercise}
             workout={workout}
@@ -107,7 +115,6 @@ const App = (): JSX.Element => {
           />
         </>
       }
-      <hr />
       <button onClick={logout}>Logout</button>
     </main>
   );
