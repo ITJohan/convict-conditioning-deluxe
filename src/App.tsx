@@ -31,6 +31,14 @@ const App = (): JSX.Element => {
     setExercise(exerciseFactory(Group.pushups, workout.pushups.level));
   }
 
+  const logout = async () => {
+    await firebase.logout();
+
+    setWorkout(undefined);
+    setWorkouts(undefined);
+    setExercise(undefined);
+  }
+
   if (!workouts || !workout || !exercise) {
     return (
       <>
@@ -84,11 +92,13 @@ const App = (): JSX.Element => {
   return (
     <main>
       <h1>Convict Conditioning Deluxe</h1>
+      <hr />
       {isFinished ?
         <h2>Finished, good job!</h2> :
         <>
           <h2>{exercise.group.charAt(0).toUpperCase() + exercise.group.slice(1)} level {exercise.level}, {exercise.variant.toLowerCase()}</h2>
           <img width={400} src={exercise.image} alt='Exercise instructions' />
+          <hr />
           <ExerciseForm
             exercise={exercise}
             workout={workout}
@@ -97,6 +107,8 @@ const App = (): JSX.Element => {
           />
         </>
       }
+      <hr />
+      <button onClick={logout}>Logout</button>
     </main>
   );
 };

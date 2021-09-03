@@ -41,6 +41,7 @@ export type Workout = {
 
 export type WorkoutService = {
   login(): void;
+  logout(): void;
   getWorkouts(): Promise<Workout[]>;
   postWorkout(workout: Workout): void;
 }

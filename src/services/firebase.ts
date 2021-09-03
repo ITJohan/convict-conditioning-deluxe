@@ -1,4 +1,4 @@
-import { getAuth, GoogleAuthProvider, signInWithPopup, User } from 'firebase/auth';
+import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, User } from 'firebase/auth';
 import { Level, Workout, WorkoutExerciseDto, WorkoutService } from '../models/types';
 import { addDoc, collection, getDocs, getFirestore, orderBy, query, QueryDocumentSnapshot } from 'firebase/firestore';
 import { initializeApp } from 'firebase/app';
@@ -16,15 +16,19 @@ const firebaseConfig = {
 
 const firebaseService = (): WorkoutService => {  
   const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
   const db = getFirestore(app);
   
   let user: User | null = null;
   
   const login = async () => {
     const provider = new GoogleAuthProvider();
-    const auth = getAuth(app);
     const userCredentials = await signInWithPopup(auth, provider);
     user = userCredentials.user;
+  }
+
+  const logout = async () => {
+    await signOut(auth);
   }
 
   const getWorkouts = async (): Promise<Workout[]> => {
@@ -103,7 +107,7 @@ const firebaseService = (): WorkoutService => {
     return { level, sets }
   }
 
-  return { login: login, getWorkouts, postWorkout }
+  return { login, logout, getWorkouts, postWorkout }
 }
 
 export default firebaseService;
