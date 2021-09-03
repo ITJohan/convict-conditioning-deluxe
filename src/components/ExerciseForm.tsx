@@ -1,5 +1,5 @@
 import React from 'react';
-import { Exercise, Workout } from '../models/types';
+import { Exercise, Workout } from '../types';
 import Slider from './Slider';
 
 export type ExerciseFormProps = {

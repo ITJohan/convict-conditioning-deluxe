@@ -1,5 +1,5 @@
 import { exerciseFactory } from './factories/exerciseFactory';
-import { Group, Level, Workout, WorkoutExerciseDto } from './models/types';
+import { Group, Level, Workout, WorkoutExerciseDto } from './types';
 
 export const generateWorkout = (prev: Workout): Workout => {
   return {

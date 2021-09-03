@@ -1,4 +1,4 @@
-import { Level, Exercise, Group } from '../../models/types';
+import { Level, Exercise, Group } from '../../types';
 
 const legRaisesFactory = (level: Level): Exercise => {
   switch (level) {

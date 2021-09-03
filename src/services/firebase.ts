@@ -1,5 +1,5 @@
 import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, User } from 'firebase/auth';
-import { Level, Workout, WorkoutExerciseDto, WorkoutService } from '../models/types';
+import { Level, Workout, WorkoutExerciseDto, WorkoutService } from '../types';
 import { addDoc, collection, getDocs, getFirestore, orderBy, query, QueryDocumentSnapshot } from 'firebase/firestore';
 import { initializeApp } from 'firebase/app';
 

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 
 import firebaseService from './services/firebase';
-import { Exercise, Group, Workout, WorkoutService } from './models/types';
+import { Exercise, Group, Workout, WorkoutService } from './types';
 import ExerciseForm from './components/ExerciseForm';
 import { exerciseFactory } from './factories/exerciseFactory';
 import { generateWorkout } from './helpers';

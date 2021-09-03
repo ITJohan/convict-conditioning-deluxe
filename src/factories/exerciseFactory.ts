@@ -1,4 +1,4 @@
-import { Exercise, Group, Level } from '../models/types';
+import { Exercise, Group, Level } from '../types';
 import bridgesFactory from './exercisesFactories/bridgesFactory';
 import handstandsFactory from './exercisesFactories/handstandsFactory';
 import legRaisesFactory from './exercisesFactories/legRaisesFactory';
