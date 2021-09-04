@@ -1,5 +1,6 @@
+import { ChartData } from 'chart.js';
 import { exerciseFactory } from './factories/exerciseFactory';
-import { Group, Level, Workout, WorkoutExerciseDto } from './types';
+import { Exercise, Group, Level, Workout, WorkoutExerciseDto } from './types';
 
 export const generateWorkout = (prev: Workout): Workout => {
   return {
@@ -46,3 +47,18 @@ export const incrementLevel = (level: Level): Level => {
     case 10: return 10;
   }
 };
+
+export const generateChartData = (workouts: Workout[], exercise: Exercise): ChartData => {
+  const filteredWorkouts = workouts.filter(workout => workout[exercise.group].level === exercise.level);
+  const labels = filteredWorkouts.map(workout => workout.start);
+  const rgbs = ['255, 99, 132', '75, 192, 192', '54, 162, 235'];
+  const datasets = exercise.goals.map((goal, index) => ({
+    label: `Set ${index + 1} reps`,
+    data: filteredWorkouts.map(workout => workout[exercise.group].sets[index]),
+    backgroundColor: [`rgba(${rgbs[index]}, 0.2)`],
+    borderColor: [`rgba(${rgbs[index]}, 1)`],
+    borderWidth: 1
+  }));
+
+  return { labels, datasets };
+}

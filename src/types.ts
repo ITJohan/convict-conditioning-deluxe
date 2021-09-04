@@ -18,11 +18,13 @@ export type Exercise = {
   image: string;
 };
 
+// TODO: Remove?
 export type WorkoutExercise = {
   exercise: Exercise
   sets: number[];
 };
 
+// TODO: Remove Dto from name?
 export type WorkoutExerciseDto = {
   level: Level;
   sets: number[];
