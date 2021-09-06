@@ -16,15 +16,36 @@ const Chart: React.FC<ChartProps> = ({ workouts, exercise }): JSX.Element => {
   }, [workouts, exercise]);
 
   return (
-    <div style={{ width: '400px' }}>
+    <div>
       <Line data={data} options={{
         animation: false,
         scales: {
           y: {
             beginAtZero: true,
-            max: exercise.goals[0]
+            max: exercise.goals[0],
+            ticks: {
+              color: 'white'
+            },
+            grid: {
+              color: 'rgba(255, 255, 255, 0.2)'
+            }
           },
           x: {
+            display: false,
+            title: {
+              display: false
+            }
+            // ticks: {
+            //   color: 'white'
+            // },
+            // grid: {
+            //   color: 'rgba(255, 255, 255, 0.2)'
+            // }
+          }
+        },
+        color: 'white',
+        plugins: {
+          legend: {
             display: false
           }
         }

@@ -10,6 +10,7 @@ export type ExerciseFormProps = {
 };
 
 const ExerciseForm: React.FC<ExerciseFormProps> = ({
+  children,
   exercise,
   workout,
   updateWorkout,
@@ -26,8 +27,10 @@ const ExerciseForm: React.FC<ExerciseFormProps> = ({
         unit={exercise.unit}
       />
     ))}
-
-    <button onClick={submitWorkout}>Done</button>
+    <div className='button-group'>
+      {children}
+      <button onClick={submitWorkout}>Done</button>
+    </div>
   </form>
 );
 

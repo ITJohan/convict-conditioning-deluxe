@@ -51,7 +51,7 @@ const App = (): JSX.Element => {
     return (
       <>
         <h1>Convict Conditioning Deluxe</h1>
-        <button onClick={login}>Login</button>
+        <button className='button' onClick={login}>Login</button>
       </>
     );
   }
@@ -100,24 +100,23 @@ const App = (): JSX.Element => {
 
   return (
     <main>
-      <h1>Convict Conditioning Deluxe</h1>
       {isFinished ?
-        <h2>Finished, good job!</h2> :
+        <h1>Finished, good job!</h1> :
         <>
-          <h2>{exercise.group.charAt(0).toUpperCase() + exercise.group.slice(1)} level {exercise.level}, {exercise.variant.toLowerCase()}</h2>
-          <img width={400} src={exercise.image} alt='Exercise instructions' />
+          <h1>{exercise.group.charAt(0).toUpperCase() + exercise.group.slice(1)} level {exercise.level}, {exercise.variant.toLowerCase()}</h1>
+          <img src={exercise.image} alt='Exercise instructions' />
           <Chart workouts={workouts} exercise={exercise} />
-          <p>Rep goal: {exercise.goals[0]}</p>
-          <p>{timer === 0 ? 'Hit it!' : `Countdown: ${timer}`}</p>
+          <h2>{timer === 0 ? 'Hit it!' : `Countdown: ${timer}`}</h2>
           <ExerciseForm
             exercise={exercise}
             workout={workout}
             updateWorkout={updateWorkout}
             submitWorkout={submitWorkout}
-          />
+          >
+            <button className='button' onClick={logout}>Logout</button>
+          </ExerciseForm>
         </>
       }
-      <button onClick={logout}>Logout</button>
     </main >
   );
 };

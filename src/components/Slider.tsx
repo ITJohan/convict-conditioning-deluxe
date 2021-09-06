@@ -17,8 +17,8 @@ const Slider: React.FC<SliderProps> = ({
   updateSetReps,
 }): JSX.Element => {
   return (
-    <div>
-      <label htmlFor={`set-${id}-slider`}>Set {id + 1}</label>
+    <div className='slider'>
+      <label htmlFor={`set-${id}-slider`}>Set {id + 1}, {reps} {unit}</label>
       <input
         type="range"
         id={`set-${id}-slider`}
@@ -28,7 +28,6 @@ const Slider: React.FC<SliderProps> = ({
         value={reps}
         onChange={(e) => updateSetReps(Number.parseInt(e.target.value), id)}
       />
-      {reps} {unit}
     </div>
   );
 };
